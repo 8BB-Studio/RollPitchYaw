@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="RollPitchYaw.Views.Nut"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RollPitchYaw.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="100"
+             d:DesignWidth="100"
+             mc:Ignorable="d">
+    <Grid>
+        <Polygon Fill="Silver"
+                 Points="50,0  100,25  100,75  50,100  0,75  0,25"
+                 Stroke="LightGray"
+                 StrokeThickness="2" />
+        <Ellipse Width="75"
+                 Height="75"
+                 Fill="#555555"
+                 Stroke="DarkGray"
+                 StrokeThickness="4" />
+        <Border Width="10"
+                Height="40"
+                Background="Black"
+                CornerRadius="5" />
+        <Border Width="40"
+                Height="10"
+                Background="Black"
+                CornerRadius="5" />
+    </Grid>
+</UserControl>

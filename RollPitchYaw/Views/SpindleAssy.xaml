@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="RollPitchYaw.Views.SpindleAssy"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RollPitchYaw.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Width="200"
+             Height="200"
+             mc:Ignorable="d">
+    <Grid>
+        <Ellipse Width="75"
+                 Height="75"
+                 Fill="Gold"
+                 Stroke="DarkGoldenrod"
+                 StrokeThickness="4" />
+        <Canvas>
+            <local:NutRing Canvas.Left="74" Canvas.Top="74">
+                <local:NutRing.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="0.3" ScaleY="0.3" />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </local:NutRing.RenderTransform>
+            </local:NutRing>
+            <local:SpindleView />
+            <local:SocketView />
+        </Canvas>
+    </Grid>
+</UserControl>

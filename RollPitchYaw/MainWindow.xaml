@@ -1,0 +1,79 @@
+﻿<Window x:Class="RollPitchYaw.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:RollPitchYaw"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:RollPitchYaw.Views"
+        xmlns:vms="clr-namespace:RollPitchYaw.ViewModels"
+        Title="MainWindow"
+        Width="800"
+        Height="450"
+        Background="Black"
+        mc:Ignorable="d">
+
+    <Window.Resources>
+        <!--  SpindleAssy를 시각적으로 투영할 리소스로 등록  -->
+        <views:SpindleAssy x:Key="SpindleVisual"
+                           Width="200"
+                           Height="200" />
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vms:Spindle3DViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <!--  슬라이더 패널  -->
+        <views:ControlBar Width="280"
+                          Height="160"
+                          Margin="-480,-210,0,0"
+                          DataContext="{Binding}" />
+
+        <!--  3D Viewport  -->
+        <Viewport3D Margin="180,10,10,10">
+            <!--  카메라 설정  -->
+            <Viewport3D.Camera>
+                <PerspectiveCamera FieldOfView="45"
+                                   LookDirection="0,0,-5"
+                                   Position="0,0,5"
+                                   UpDirection="0,1,0" />
+            </Viewport3D.Camera>
+
+            <!--  조명  -->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <DirectionalLight Direction="-1,-1,-3" Color="White" />
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+
+            <!--  모델 정의  -->
+            <ModelVisual3D>
+                <ModelVisual3D.Transform>
+                    <Transform3DGroup>
+                        <RotateTransform3D>
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D Angle="{Binding Roll}" Axis="0,0,1" />
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                        <RotateTransform3D>
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D Angle="{Binding Pitch}" Axis="1,0,0" />
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                        <RotateTransform3D>
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D Angle="{Binding Yaw}" Axis="0,1,0" />
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                    </Transform3DGroup>
+                </ModelVisual3D.Transform>
+
+                <!--  모델 그룹: 앞면 + 뒷면 + 곡면  -->
+                <ModelVisual3D.Content>
+                    <Model3DGroup x:Name="MyModelGroup" />
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+        </Viewport3D>
+    </Grid>
+</Window>
